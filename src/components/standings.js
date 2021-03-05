@@ -28,14 +28,15 @@ function blankRows() {
 }
 
 
-function createTable(rows, tname, classes) {
+function createTable(rows, tname, numPlayers, classes) {
+
     
     return (
         <div class="jss155 jss157">
         <div class="jss154">
             
         <TableContainer component={Paper}>
-        <div className="top-span"><span className={classes.table}><center><b>{tname}</b></center></span></div>
+        <div className="top-span"><span className={classes.table}><center><b>{tname} - {numPlayers} players remain.</b></center></span></div>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -67,7 +68,7 @@ function createTable(rows, tname, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/chefcat/,'i')
+        let re = new RegExp(/tiny\sturbo/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
@@ -116,7 +117,7 @@ function Standings(props) {
     if(props.tournamentData.isLoading) {
         const blankData = blankRows()
         return (
-          <div>{createTable(blankData, "Loading...", classes)}</div>
+          <div>{createTable(blankData, "Loading...", 10, classes)}</div>
         )
     }
     else if (props.tournamentData.isError) {
@@ -136,7 +137,7 @@ function Standings(props) {
         else {
             
             return (
-                <div>{createTable(chefcatTournamentData.data.splice(0,8), chefcatTournamentData.tname, classes)}</div>
+                <div>{createTable(chefcatTournamentData.data.splice(0,8), chefcatTournamentData.tname, chefcatTournamentData.data.length, classes)}</div>
             )
 
         }
