@@ -14,7 +14,7 @@ import './table.css'
 
 const useStyles = makeStyles({
   table: {
-    maxWidth: 400,
+    maxWidth: 350,
     backgroundColor: "gray"
   },
 });
@@ -42,7 +42,7 @@ function createTable(rows, tname, classes) {
             <TableCell align="center"><b>Position</b></TableCell>
             <TableCell align="center"><b>Player</b></TableCell>
             <TableCell align="center"><b>Chips</b></TableCell>
-            <TableCell align="center"><b>Prize</b></TableCell>
+            <TableCell align="center"><b>Winnings</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
