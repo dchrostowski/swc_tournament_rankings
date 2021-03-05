@@ -135,9 +135,16 @@ function Standings(props) {
             )
         }
         else {
+          let activePlayers = 0
+          for(let i=0; i<chefcatTournamentData.data.length; i++) {
+            let player = chefcatTournamentData.data[i]
+            if(player.chips > 0) {
+              activePlayers++
+            }
+          }
             
             return (
-                <div>{createTable(chefcatTournamentData.data.splice(0,8), chefcatTournamentData.tname, chefcatTournamentData.data.length, classes)}</div>
+                <div>{createTable(chefcatTournamentData.data.splice(0,10), chefcatTournamentData.tname, activePlayers, classes)}</div>
             )
 
         }
