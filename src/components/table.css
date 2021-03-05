@@ -1,7 +1,7 @@
 
 .jss157 {
     padding: 24px;
-    background-color: #333;
+    background-color: transparent;
 }
 .jss155 {
     border-radius: 4px;
@@ -28,6 +28,11 @@
     box-sizing: inherit;
 }
 
+.top-span {
+    background-color:rgba(81, 81, 81, 1);
+    font-size: 32;
+    font-color: white;
+}
 
 body {
     color:gray;

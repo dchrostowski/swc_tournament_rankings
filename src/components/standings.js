@@ -14,25 +14,34 @@ import './table.css'
 
 const useStyles = makeStyles({
   table: {
-    maxWidth: 300,
+    maxWidth: 400,
     backgroundColor: "gray"
   },
 });
 
+function blankRows() {
+  let rows = []
+  for (let i=0; i<8; i++) {
+    rows.push({playerName: '', chips: '', position: i+1})
+  }
+  return rows
+}
 
-function createTable(rows, classes) {
+
+function createTable(rows, tname, classes) {
     
     return (
         <div class="jss155 jss157">
         <div class="jss154">
-        <span></span>    
+            
         <TableContainer component={Paper}>
+        <div className="top-span"><span className={classes.table}><center><b>{tname}</b></center></span></div>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right"><b>Position</b></TableCell>
-            <TableCell align="right"><b>Player</b></TableCell>
-            <TableCell align="right"><b>Chips</b></TableCell>
+            <TableCell align="center"><b>Position</b></TableCell>
+            <TableCell align="center"><b>Player</b></TableCell>
+            <TableCell align="center"><b>Chips</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,8 +50,8 @@ function createTable(rows, classes) {
               <TableCell align="center">
                 {row.position}
               </TableCell>
-              <TableCell align="right">{row.playerName}</TableCell>
-              <TableCell align="right">{row.chips}</TableCell>
+              <TableCell align="center">{row.playerName}</TableCell>
+              <TableCell align="center">{row.chips}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -56,13 +65,13 @@ function createTable(rows, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/chefcat/,'i')
+        let re = new RegExp(/thursday/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
             console.log(tournamentNames[i])
             if (tournamentNames[i].match(re)) {
-                return tourneyData[tournamentNames[i]]
+                return {data: tourneyData[tournamentNames[i]], tname: tournamentNames[i]}
             }
         }
         return null
@@ -79,6 +88,8 @@ function getChefCatTournament(tourneyData) {
 function Standings(props) {
 
     useEffect(() => {
+
+      props.getTournamentData()
         try {
             setInterval(async () => {
 
@@ -101,9 +112,9 @@ function Standings(props) {
 
 
     if(props.tournamentData.isLoading) {
-
+        const blankData = blankRows()
         return (
-            <div>Loading...</div>
+          <div>{createTable(blankData, "Loading...", classes)}</div>
         )
     }
     else if (props.tournamentData.isError) {
@@ -121,8 +132,9 @@ function Standings(props) {
             )
         }
         else {
+            
             return (
-                <div>{createTable(chefcatTournamentData.splice(0,10),classes)}</div>
+                <div>{createTable(chefcatTournamentData.data.splice(0,8), chefcatTournamentData.tname, classes)}</div>
             )
 
         }
