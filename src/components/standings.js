@@ -42,6 +42,7 @@ function createTable(rows, tname, classes) {
             <TableCell align="center"><b>Position</b></TableCell>
             <TableCell align="center"><b>Player</b></TableCell>
             <TableCell align="center"><b>Chips</b></TableCell>
+            <TableCell align="center"><b>Prize</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,7 +52,8 @@ function createTable(rows, tname, classes) {
                 {row.position}
               </TableCell>
               <TableCell align="center">{row.playerName}</TableCell>
-              <TableCell align="center">{row.chips}</TableCell>
+              <TableCell align="center">{row.chips || "eliminated"}</TableCell>
+              <TableCell align="center">{!row.prize && row.chips ? "TBD" : row.prize}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -65,7 +67,7 @@ function createTable(rows, tname, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/thursday/,'i')
+        let re = new RegExp(/chefcat/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
