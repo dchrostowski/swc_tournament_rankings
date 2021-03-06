@@ -29,7 +29,9 @@ function blankRows() {
 
 
 function createTable(rows, tname, numPlayers, classes) {
-
+    if (numPlayers === 0 && rows.length > 0) {
+        rows[0].chips = "Winner"
+    }
     
     return (
         <div class="jss155 jss157">
@@ -53,7 +55,7 @@ function createTable(rows, tname, numPlayers, classes) {
                 {row.position}
               </TableCell>
               <TableCell align="center">{row.playerName}</TableCell>
-              <TableCell align="center">{row.chips || "eliminated"}</TableCell>
+              <TableCell align="center">{row.chips || "Eliminated"}</TableCell>
               <TableCell align="center">{!row.prize && row.chips ? "TBD" : row.prize}</TableCell>
             </TableRow>
           ))}
