@@ -29,14 +29,15 @@
 }
 
 .top-span {
-    background-color:rgba(81, 81, 81, 1);
+    background-color: black;
     font-size: 32;
-    font-color: white;
+    color: white;
 }
 
 body {
     color:gray;
     font-size: 0.875rem;
+    color: white;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     line-height: 1.43;
@@ -46,6 +47,7 @@ body {
 .MuiTableContainer-root {
     width: 100%;
     overflow-x: auto;
+    color: white;
 }
 .MuiPaper-elevation1 {
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
@@ -81,3 +83,13 @@ body {
     letter-spacing: 0.01071em;
     vertical-align: inherit;
 }
+
+th.MuiTableCell-head {
+    color:white
+}
+
+td.MuiTableCell-body {
+    color: white;
+    font-weight: 600;
+}
+

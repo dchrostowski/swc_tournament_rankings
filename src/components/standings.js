@@ -10,12 +10,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import background from './bgimg.png'
 import './table.css'
 
 const useStyles = makeStyles({
   table: {
     maxWidth: 350,
-    backgroundColor: "gray"
+    backgroundImage: `url(${background})`,
+    
   },
 });
 
@@ -68,7 +70,7 @@ function createTable(rows, tname, numPlayers, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/chefcat/,'i')
+        let re = new RegExp(/daily\scrust/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
@@ -97,7 +99,7 @@ function Standings(props) {
             setInterval(async () => {
 
                 props.getTournamentData()
-            }, 20000)
+            }, 60000)
 
         }
         catch(e) {
@@ -144,7 +146,7 @@ function Standings(props) {
           }
             
             return (
-                <div>{createTable(chefcatTournamentData.data.splice(0,10), chefcatTournamentData.tname, activePlayers, classes)}</div>
+                <div>{createTable(chefcatTournamentData.data.splice(0,6), chefcatTournamentData.tname, activePlayers, classes)}</div>
             )
 
         }
