@@ -36,7 +36,7 @@ function createTable(rows, tname, numPlayers, classes) {
         <div class="jss154">
             
         <TableContainer component={Paper}>
-        <div className="top-span"><span className={classes.table}><center><b>{tname} - {numPlayers} players remain.</b></center></span></div>
+        <div className="top-span"><span className={classes.table}><center><b>{tname} - {numPlayers} players.</b></center></span></div>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
