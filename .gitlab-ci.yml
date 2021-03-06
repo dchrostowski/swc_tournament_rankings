@@ -1,0 +1,34 @@
+# Using the node alpine image to build the React app
+image: node:alpine
+
+# Announce the URL as per CRA docs
+# https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#advanced-configuration
+variables:
+  PUBLIC_URL: /
+# Cache node modules - speeds up future builds
+cache:
+  paths:
+  - node_modules
+
+# Name the stages involved in the pipeline
+stages:
+- prod
+
+deploy_prod:
+  stage: prod
+  variables:
+    www_dir: "/var/www/cornblaster.com"
+  tags:
+    - streetscrape
+  script:
+    #- "curl -X POST -F token=ea99b96486c9b2fca5fe7cc6107392 -F ref=master https://git.streetscrape.com/api/v4/projects/43/trigger/pipeline"
+    - "echo $www_dir"
+    - "pwd"
+    - "echo $env"
+    - "yarn install"
+    - "CI=false npm run build --prod"
+    - "cp build/* $www_dir/ -R"
+  allow_failure: true
+  only:
+    - master
+
