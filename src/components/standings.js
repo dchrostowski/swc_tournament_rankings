@@ -68,7 +68,7 @@ function createTable(rows, tname, numPlayers, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/freeroll/,'i')
+        let re = new RegExp(/friday\snights\swith/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
@@ -130,9 +130,9 @@ function Standings(props) {
         console.log("p")
         const chefcatTournamentData = getChefCatTournament(props.tournamentData.data)
         if(chefcatTournamentData === null) {
-            return (
-                <div><span>No ChefCat tournaments running.</span></div>
-            )
+          return (
+              <div>{createTable([],"Error: could not find tournament.",0, classes)}</div>
+          )
         }
         else {
           let activePlayers = 0
