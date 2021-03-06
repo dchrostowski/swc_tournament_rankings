@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 function blankRows() {
   let rows = []
-  for (let i=0; i<8; i++) {
+  for (let i=0; i<6; i++) {
     rows.push({playerName: '', chips: '', position: i+1})
   }
   return rows
@@ -133,7 +133,7 @@ function Standings(props) {
         const chefcatTournamentData = getChefCatTournament(props.tournamentData.data)
         if(chefcatTournamentData === null) {
           return (
-              <div>{createTable([],"Tournament not running.",0, classes)}</div>
+              <div>{createTable(blankRows(),"Tournament not running.",0, classes)}</div>
           )
         }
 
