@@ -25,7 +25,7 @@ deploy_prod:
     - "echo $www_dir"
     - "pwd"
     - "echo $env"
-    - "npm run install"
+    - "npm install"
     - "CI=false npm run build --prod"
     - "cp build/* $www_dir/ -R"
   allow_failure: true
