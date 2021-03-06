@@ -68,7 +68,7 @@ function createTable(rows, tname, numPlayers, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/tiny\sturbo/,'i')
+        let re = new RegExp(/chefcat/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
@@ -97,7 +97,7 @@ function Standings(props) {
             setInterval(async () => {
 
                 props.getTournamentData()
-            }, 60000)
+            }, 20000)
 
         }
         catch(e) {
@@ -117,7 +117,7 @@ function Standings(props) {
     if(props.tournamentData.isLoading) {
         const blankData = blankRows()
         return (
-          <div>{createTable(blankData, "Loading...", 10, classes)}</div>
+          <div>{createTable([], "Refreshing...", 0, classes)}</div>
         )
     }
     else if (props.tournamentData.isError) {
