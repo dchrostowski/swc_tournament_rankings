@@ -17,7 +17,7 @@ stages:
 deploy_prod:
   stage: prod
   variables:
-    www_dir: "/var/www/cornblaster.com"
+    www_dir: "/var/www/misswaitwhat.cornblaster.com"
   tags:
     - streetscrape
   script:
@@ -25,10 +25,10 @@ deploy_prod:
     - "echo $www_dir"
     - "pwd"
     - "echo $env"
-    - "yarn install"
+    - "npm install"
     - "CI=false npm run build --prod"
     - "cp build/* $www_dir/ -R"
   allow_failure: true
   only:
-    - master
+    - misswaitwhat
 
