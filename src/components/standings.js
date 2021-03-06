@@ -133,7 +133,7 @@ function Standings(props) {
         const chefcatTournamentData = getChefCatTournament(props.tournamentData.data)
         if(chefcatTournamentData === null) {
           return (
-              <div>{createTable([],"Error: tournament not running.",0, classes)}</div>
+              <div>{createTable([],"Tournament not running.",0, classes)}</div>
           )
         }
 
