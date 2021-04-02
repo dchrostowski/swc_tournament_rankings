@@ -99,7 +99,7 @@ function Standings(props) {
             setInterval(async () => {
 
                 props.getTournamentData()
-            }, 45000)
+            }, 60000)
 
         }
         catch(e) {
