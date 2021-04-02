@@ -70,7 +70,7 @@ function createTable(rows, tname, numPlayers, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/smooth/,'i')
+        let re = new RegExp(/friday\snights\swith\schefcat/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
