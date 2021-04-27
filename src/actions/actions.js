@@ -10,3 +10,12 @@ export function get_tournament_data() {
     }
 
 }
+
+export function get_spo_tournament_data() {
+    const request = axios.get('https://api.dev.proxycrawler.com/spo_tournament_standings')
+    return {
+        type: GET_TOURNAMENT_DATA,
+        payload: request
+    }
+
+}

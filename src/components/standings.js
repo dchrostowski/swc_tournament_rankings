@@ -1,7 +1,7 @@
 
 import {connect} from 'react-redux'
 import React, {useEffect} from 'react'
-import {get_tournament_data} from '../actions/actions'
+import {get_tournament_data, get_spo_tournament_data} from '../actions/actions'
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -70,7 +70,7 @@ function createTable(rows, tname, numPlayers, classes) {
 function getChefCatTournament(tourneyData) {
     console.log(tourneyData)
     try {
-        let re = new RegExp(/sunday\ssocial/,'i')
+        let re = new RegExp(/closing\stime/,'i')
         const tournamentNames = Object.keys(tourneyData)
 
         for (let i=0; i<tournamentNames.length; i++) {
@@ -161,7 +161,7 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch => ({
     getTournamentData: () => {
-      dispatch(get_tournament_data())
+      dispatch(get_spo_tournament_data())
     }
   })
 
