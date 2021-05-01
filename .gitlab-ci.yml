@@ -31,4 +31,6 @@ deploy_prod:
   allow_failure: true
   only:
     - master
+    - devel/add_routes_and_different_overlays
+
 
