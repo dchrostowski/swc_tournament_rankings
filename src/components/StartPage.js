@@ -17,9 +17,7 @@ import StandingsTicker from './StandingsTicker'
 
 function renderLinks(tlist) {
     console.log(tlist)
-    if(tlist.length === 0) {
-        return <p>No tournaments are running.</p>
-    }
+    
 
     if(typeof tlist === 'undefined') return null
     
