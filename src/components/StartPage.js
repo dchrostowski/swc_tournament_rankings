@@ -17,6 +17,9 @@ import StandingsTicker from './StandingsTicker'
 
 function renderLinks(tlist) {
     console.log(tlist)
+    if(tlist.length === 0) {
+        return <p>No tournaments are running.</p>
+    }
 
     if(typeof tlist === 'undefined') return null
     
@@ -70,6 +73,7 @@ function StartPage(props) {
         else {
         return (
             <div className="tournament-list-wrapper">
+                Pick a tournament and click the corresponding link to see the overlay.  Add a browser source in OBS studio, copy the link as the source URL.
                 <ul>
                 {renderLinks(props.runningTournaments.data)}
                 </ul>
