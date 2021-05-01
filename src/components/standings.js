@@ -161,7 +161,7 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch => ({
     getTournamentData: () => {
-      dispatch(get_spo_tournament_data())
+      dispatch(get_tournament_data())
     }
   })
 
