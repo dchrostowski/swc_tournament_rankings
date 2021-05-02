@@ -7,6 +7,8 @@ import {
     useLocation
   } from "react-router-dom";
 import StandingsTicker from './StandingsTicker'
+import StandingsTable from './StandingsTable'
+import './start.css'
   
 
 
@@ -19,15 +21,19 @@ function renderLinks(tlist) {
     console.log(tlist)
     
 
-    if(typeof tlist === 'undefined') return null
+    if(typeof tlist === 'undefined') return (<ul><li>No tournament are running</li></ul>)
+    
     
     const links = tlist.map((tinfo) => {
         const {tournamentName, site, tournmaentId, uniqueId} = tinfo
-        const href="/?uid=" + uniqueId
+        const href1="/ticker?uid=" + uniqueId + '&widgetType=' + 'ticker'
+        const href2="/table/?uid=" + uniqueId + '&widgetType=table'
         return (
+            <ul>
             <li>
-                <a href={href}>{tournamentName} ({site})</a>
-            </li>
+            <span>{tournamentName} ({site}): ( <a href={href1}> Ticker</a> | <a href={href2}>Table</a> )</span>
+           </li>
+           </ul>
         )
 
     })
@@ -61,12 +67,31 @@ function StartPage(props) {
     else {
 
         const uid = query.get('uid')
+        const widgetType = query.get('widgetType')
         if(uid) {
-            return (
-                <div style={{backgroundColor: '#3b3a39'}}>
-                <StandingsTicker uid={uid}/>
-                </div>
-            )
+            if(widgetType === 'ticker') {
+                return (
+                    <div style={{backgroundColor: '#3b3a39'}}>
+                    <StandingsTicker uid={uid}/>
+                    </div>
+                )
+            }
+            else if(widgetType === 'table') {
+                return (
+                    <StandingsTable uid={uid} />
+                )
+
+            }
+
+            else {
+                return (
+                    <div>Invalid widget or tournament id</div>
+                )
+            }
+
+            
+            
+            
         }
         else {
         return (

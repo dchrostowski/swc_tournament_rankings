@@ -29,16 +29,14 @@ function blankRows() {
 
 
 function createTable(rows, tname, numPlayers, classes) {
-    if (numPlayers === 0 && rows.length > 0) {
-        rows[0].chips = "Winner"
-    }
+    
     
     return (
-        <div class="jss155 jss157">
-        <div class="jss154">
+        <div className="jss155 jss157">
+        <div className="jss154">
             
         <TableContainer component={Paper}>
-        <div className="top-span"><span className={classes.table}><center><b>{tname} - {numPlayers} players.</b></center></span></div>
+        <div className="top-span"><span className={classes.table}><center><b>{tname} - {rows.length} players.</b></center></span></div>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -56,7 +54,7 @@ function createTable(rows, tname, numPlayers, classes) {
               </TableCell>
               <TableCell align="center">{row.playerName}</TableCell>
               <TableCell align="center">{row.chips || "Eliminated"}</TableCell>
-              <TableCell align="center">{!row.prize && row.chips ? "TBD" : row.prize}</TableCell>
+              <TableCell align="center">{!row.prize1 && row.chips ? "TBD" : row.totalPrize}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -67,38 +65,16 @@ function createTable(rows, tname, numPlayers, classes) {
     )
 }
 
-function getChefCatTournament(tourneyData) {
-    console.log(tourneyData)
-    try {
-        let re = new RegExp(/friday\snights/,'i')
-        const tournamentNames = Object.keys(tourneyData)
-
-        for (let i=0; i<tournamentNames.length; i++) {
-            console.log(tournamentNames[i])
-            if (tournamentNames[i].match(re)) {
-                return {data: tourneyData[tournamentNames[i]], tname: tournamentNames[i]}
-            }
-        }
-        return null
-    }
-    catch(err) {
-        console.log(tourneyData)
-        return null
-    }
-
-
-    
-}
-
-function Standings(props) {
-
+function StandingsTable(props) {
+    const {uid} = props
+    const {tournamentData} = mapStateToProps
     useEffect(() => {
 
-      props.getTournamentData()
+      props.getTournamentData(uid)
         try {
             setInterval(async () => {
 
-                props.getTournamentData()
+                props.getTournamentData(uid)
             }, 60000)
 
         }
@@ -124,34 +100,36 @@ function Standings(props) {
     }
     else if (props.tournamentData.isError) {
         return (
-            <div>props.tournament_data.errorMessage</div>
+            <div>{props.tournament_data.errorMessage}</div>
         )
     }
 
     else {
-        console.log("p")
-        const chefcatTournamentData = getChefCatTournament(props.tournamentData.data)
-        if(chefcatTournamentData === null) {
-          return (
-              <div>{createTable(blankRows(),"Tournament not running.",0, classes)}</div>
-          )
-        }
-        else {
-          let activePlayers = 0
-          for(let i=0; i<chefcatTournamentData.data.length; i++) {
-            let player = chefcatTournamentData.data[i]
-            if(player.chips > 0) {
-              activePlayers++
-            }
-          }
-            
-            return (
-                <div>{createTable(chefcatTournamentData.data.splice(0,10), chefcatTournamentData.tname, activePlayers, classes)}</div>
-            )
+      const {data} = props.tournamentData
+      if(typeof data !== "undefined" && 
+        data !== null &&
+        data.hasOwnProperty('players')) {
+          
+        const {players, tournamentName } = data
+        return (
+        <div>
+         {createTable(players.splice(0,10), tournamentName, players.length, classes)}
+         </div>
+        )
 
-        }
+      }
+      else {
+            console.log("--------------")
+            console.log(props.tournamentData)
+            console.log("-------------")
+            return (
+                <div>Tournament not running</div>
+            )
+      }
+
+      }
         
-    }
+    
 
 }
 
@@ -160,12 +138,12 @@ const mapStateToProps = state => ({
   })
   
   const mapDispatchToProps = dispatch => ({
-    getTournamentData: () => {
-      dispatch(get_tournament_data())
+    getTournamentData: (uid) => {
+      dispatch(get_tournament_data(uid))
     }
   })
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(Standings);
+  )(StandingsTable);
