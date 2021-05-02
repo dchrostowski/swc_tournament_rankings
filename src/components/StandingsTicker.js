@@ -60,7 +60,7 @@ const StandingsData = (props) => {
     },[])
 
     
-    let pElements = [<p className="ticker-data">hi</p> ]
+    let pElements = [<p className="ticker-data">No tournament data found. Find a ticker URL at &nbsp; <a style={{color:"white"}} href="https://cormblaster.com">https://cornblaster.com</a>.</p> ]
     
     if(tourneyData != null && tourneyData.hasOwnProperty('players')) {
         pElements = generateElements(tourneyData)
