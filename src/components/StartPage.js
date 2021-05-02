@@ -26,8 +26,8 @@ function renderLinks(tlist) {
     
     const links = tlist.map((tinfo) => {
         const {tournamentName, site, tournmaentId, uniqueId} = tinfo
-        const href1="/ticker?uid=" + uniqueId + '&widgetType=' + 'ticker'
-        const href2="/table/?uid=" + uniqueId + '&widgetType=table'
+        const href1="/?uid=" + uniqueId + '&widgetType=' + 'ticker'
+        const href2="/?uid=" + uniqueId + '&widgetType=table'
         return (
             <ul>
             <li>
