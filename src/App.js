@@ -2,8 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 
 import { Provider } from 'react-redux';
-import Standings from './components/standings'
 import createStore from './reducers/store'
+import StartPage from './components/StartPage';
+import {
+  BrowserRouter as Router,
+  Link,
+  useLocation
+} from "react-router-dom";
+
+import { TestComponent } from './components/TestComponent';
 
 const store = createStore()
 
@@ -12,7 +19,9 @@ function App(props) {
 
   return (
     <Provider store={store}>
-    <Standings/>
+    <Router>
+      <StartPage />
+    </Router>
 
     </Provider>
   );
