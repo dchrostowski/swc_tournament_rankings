@@ -16,6 +16,7 @@ const generateElements = ((data) => {
     console.log(data)
     
     const players = data.players.map((d) => {
+        console.log("d is ", d)
         i = i + 1   
         if(d.chips > 0) { 
             return  (
@@ -27,6 +28,7 @@ const generateElements = ((data) => {
             )
         }
         else {
+            console.log("else here")
             return (
                 <div className="wrapper-data">
                 <p className="ticker-data">{i}.</p>
@@ -63,7 +65,8 @@ const StandingsData = (props) => {
     if(tourneyData != null && tourneyData.hasOwnProperty('players')) {
         pElements = generateElements(tourneyData)
     }
-    let moddedIndex = index.index % pElements.length -1
+    let moddedIndex = index.index % pElements.length
+    console.log("modded index: ", moddedIndex)
 
     return (
         <div className="wrapper-data">{pElements[moddedIndex]}</div>
