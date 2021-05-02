@@ -21,7 +21,7 @@ function renderLinks(tlist) {
     console.log(tlist)
     
 
-    if(typeof tlist === 'undefined') return (<ul><li>No tournament are running</li></ul>)
+    if(typeof tlist === 'undefined' || tlist.length === 0) return (<ul><li>No tournament are running</li></ul>)
     
     
     const links = tlist.map((tinfo) => {
@@ -31,7 +31,7 @@ function renderLinks(tlist) {
         return (
             <ul>
             <li>
-            <span>{tournamentName} ({site}): ( <a href={href1}> Ticker</a> | <a href={href2}>Table</a> )</span>
+            <span>{tournamentName} ({site}): ( <Link to={href1}> Ticker</Link> | <Link to={href2}>Table</Link> )</span>
            </li>
            </ul>
         )
