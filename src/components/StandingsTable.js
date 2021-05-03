@@ -128,7 +128,16 @@ function StandingsTable(props) {
             console.log(props.tournamentData)
             console.log("-------------")
             return (
-                <div>Tournament not running</div>
+              <div className="tableWrapper">
+              <div className="jss155 jss157">
+              <div className="jss154"></div>
+              <TableContainer  component={Paper} style={{border:3,borderStyle:'solid', borderColor:'white'}}>
+              <Table>
+              <div className="top-span"><span className={classes.table}><center><b>Tournament not running</b></center></span></div>
+              <TableRow><div className="lower-span" colspan="4">Go to <a style={{color:'white'}} href="https://cornblaster.com">cornblaster.com</a> to find a running tournament.</div></TableRow>
+              </Table>
+              </TableContainer>
+              </div></div>
             )
       }
 

@@ -49,6 +49,15 @@
     width:100%;    
 }
 
+.lower-span {
+    background-color:rgb(151, 151, 151);
+    font-size: 32;
+    color: white;
+    padding-bottom:7px;
+    padding-top:7px;
+    width:100%;    
+}
+
 body {
     color:gray;
     font-size: 0.875rem;
