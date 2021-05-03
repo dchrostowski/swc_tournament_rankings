@@ -16,4 +16,4 @@ This react app is intended to be used as a twitch overlay for Poker livestreams.
 7. Adjust as you see fit.
 
 ## Live Demo
-https://cornblaster.com/
+https://cornblaster.com/ 

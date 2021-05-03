@@ -14,7 +14,7 @@ import './table.css'
 
 const useStyles = makeStyles({
   table: {
-    maxWidth: 350,
+    maxWidth: 500,
     backgroundColor: "gray"
   },
 });
@@ -28,16 +28,18 @@ function blankRows() {
 }
 
 
-function createTable(rows, tname, numPlayers, classes) {
+function createTable(rows, tname, remaining, total, classes) {
     
     
     return (
+      <div className="tableWrapper">
         <div className="jss155 jss157">
         <div className="jss154">
-            
-        <TableContainer component={Paper}>
-        <div className="top-span"><span className={classes.table}><center><b>{tname} - {rows.length} players.</b></center></span></div>
+
+        <TableContainer  component={Paper} style={{border:3,borderStyle:'solid', borderColor:'white'}}>
+        <div className="top-span"><span className={classes.table}><center><b>{tname} - {remaining}/{total} players</b></center></span></div>  
       <Table className={classes.table} aria-label="simple table">
+      
         <TableHead>
           <TableRow>
             <TableCell align="center"><b>Position</b></TableCell>
@@ -60,6 +62,7 @@ function createTable(rows, tname, numPlayers, classes) {
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
     </div>
     </div>
     )
@@ -95,7 +98,7 @@ function StandingsTable(props) {
     if(props.tournamentData.isLoading) {
         const blankData = blankRows()
         return (
-          <div>{createTable([], "Refreshing...", 0, classes)}</div>
+          <div>{createTable([], "Refreshing...", 0,0, classes)}</div>
         )
     }
     else if (props.tournamentData.isError) {
@@ -111,9 +114,11 @@ function StandingsTable(props) {
         data.hasOwnProperty('players')) {
           
         const {players, tournamentName } = data
+        const total = players.length
+        const remaining = players.filter(player => player.chips > 0)
         return (
         <div>
-         {createTable(players.splice(0,10), tournamentName, players.length, classes)}
+         {createTable(players.splice(0,9), tournamentName, remaining.length, total, classes)}
          </div>
         )
 
@@ -123,7 +128,16 @@ function StandingsTable(props) {
             console.log(props.tournamentData)
             console.log("-------------")
             return (
-                <div>Tournament not running</div>
+              <div className="tableWrapper">
+              <div className="jss155 jss157">
+              <div className="jss154"></div>
+              <TableContainer  component={Paper} style={{border:3,borderStyle:'solid', borderColor:'white'}}>
+              <Table>
+              <div className="top-span"><span className={classes.table}><center><b>Tournament not running</b></center></span></div>
+              <TableRow><div className="lower-span" colspan="4">Go to <a style={{color:'white'}} href="https://cornblaster.com">cornblaster.com</a> to find a running tournament.</div></TableRow>
+              </Table>
+              </TableContainer>
+              </div></div>
             )
       }
 
