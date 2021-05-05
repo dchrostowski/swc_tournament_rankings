@@ -68,6 +68,7 @@ function StartPage(props) {
 
         const uid = query.get('uid')
         const widgetType = query.get('widgetType')
+        const series = query.get('series') || false
         if(uid) {
             if(widgetType === 'ticker') {
                 return (
@@ -78,7 +79,7 @@ function StartPage(props) {
             }
             else if(widgetType === 'table') {
                 return (
-                    <StandingsTable uid={uid} />
+                    <StandingsTable uid={uid} series={series} />
                 )
 
             }
@@ -96,6 +97,15 @@ function StartPage(props) {
         else {
         return (
             <div className="tournament-list-wrapper">
+                <b>Useful links</b> <br/>
+                <a href="https://www.youtube.com/watch?v=_nQU_8Nm0Yk">onlyfans.com/cornbl4ster</a><br/>
+                <a href="https://twtich.tv/cornbl4ster">twitch.tv/cornbl4ster</a><br/>
+                <a href="https://danchrostowski.com">danchrostowski.com</a><br/>
+                <a href="https://github.com/dchrostowski">github.com/dchrostowski</a> <br/>
+                <a href="https://twitter.com/cornbl4ster">twatter.com/cornbl4ster</a> <br/>
+                <br/>
+                <b>Poker Stream Overlays</b> <br/>
+
                 Pick a tournament and click the corresponding link to see the overlay.  Add a browser source in OBS studio, copy the link as the source URL.
                 <ul>
                 {renderLinks(props.runningTournaments.data)}
